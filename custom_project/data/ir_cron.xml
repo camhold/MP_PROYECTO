@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="create_account_analytic_line" model="ir.cron">
+            <field name="interval_type">days</field>
+            <field name="name">Crear línea de cuenta analítica por proyecto</field>
+            <field name="numbercall">-1</field>
+            <field name="priority">5</field>
+            <field name="doall">False</field>
+            <field name="active">False</field>
+            <field name="interval_number">1</field>
+            <field name="model_id" ref="project.model_project_project"/>
+            <field name="state">code</field>
+            <field name="code">model.cron_create_account_analytic_line()</field>
+        </record>
+    </data>
+</odoo>

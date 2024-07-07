@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="task_field_edit_tree">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_tree2" />
+        <field name="arch" type="xml">
+            <field name="tag_ids" position="before">
+                <field name="payment_state" />
+            </field>
+        </field>
+    </record>
+    <record id="task_field_edit" model="ir.ui.view">
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="arch" type="xml">
+            <header position="inside">
+                <field name="payment_state" widget="statusbar" options="{'clickable': 1}"/>
+            </header>
+        </field>
+    </record>
+    <record id="edit_project_inherit_custom_project" model="ir.ui.view">
+        <field name="name">project.project.view.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="product_tmpl_id"
+                    attrs="{'invisible' : [('product_tmpl_id', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="monto_acumulado"/>
+                <field name="show_btn_to_close" invisible="1"/>
+                <field name="show_btn_to_ubication" invisible="1"/>
+                <field name="show_btn_to_analytic_account" invisible="1"/>
+                <field name="show_btn_reopen" invisible="1"/>
+                <field name="show_account" invisible="1"/>
+                <field name="account_account"
+                       options='{"no_open": True, "no_create": True}'
+                       attrs="{'invisible' : [('show_account', '=', False)]}"
+                />
+                <field name="stock_location_id"
+                        options='{"no_create": True}'
+                />
+                <field name="analytic_account_id"
+                options='{"no_create": True}'
+                />
+                <field name="info_message_analytic" />
+                <button
+                    attrs="{'invisible' : [('show_btn_to_close', '=', False)]}"
+                    class="oe_highlight"
+                    name="close_project"
+                    string="Cerrar Obra"
+                    type="object"
+                />
+                <button
+                    class="oe_highlight"
+                    attrs="{'invisible' : [('show_btn_reopen', '=', False)]}"
+                    name="button_fixed_asset"
+                    string="Crear Activo Fijo"
+                    type="object"
+                />
+                <button
+                    attrs="{'invisible' : [('show_btn_to_ubication', '=', False)]}"
+                    class="oe_highlight"
+                    name="send_to_ubication"
+                    string="Enviar a ubicación"
+                    type="object"
+                />
+                <button
+                    class="oe_highlight"
+                    attrs="{'invisible' : [('show_btn_reopen', '=', False)]}"
+                    name="reopen_project"
+                    string="Reabrir obra"
+                    type="object"
+                />
+                <button
+                attrs="{'invisible' : [('show_btn_to_analytic_account', '=', False)]}"
+                class="oe_highlight"
+                name="send_to_analytic_account"
+                string="Crear cuenta analitica"
+                type="object"
+                />
+            </xpath>
+        </field>
+    </record>
+    <record id="view_project_inherit_custom_project" model="ir.ui.view">
+        <field name="name">project.project.view.list.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.view_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="monto_acumulado" decoration-danger="1"/>
+                <field name="currency_id" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

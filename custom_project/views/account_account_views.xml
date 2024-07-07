@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="view_account_account_views" model="ir.ui.view">
+        <field name="name">account.account.form.inherit.activo</field>
+        <field name="model">account.analytic.group</field>
+        <field name="inherit_id" ref="analytic.account_analytic_group_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description']" position="after">
+<!--                <field name="is_construction_works"/>-->
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
